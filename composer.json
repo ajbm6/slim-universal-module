@@ -11,7 +11,6 @@
   "require": {
     "php": ">=7.0",
     "container-interop/service-provider": "~0.3.0",
-    "thecodingmachine/common-factories": "dev-master",
     "slim/slim": "^3.0",
     "thecodingmachine/middleware-list-universal-module": "~1.0"
   },
