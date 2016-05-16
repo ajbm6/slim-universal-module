@@ -2,9 +2,9 @@
     "version": "1.0",
     "name": "thecodingmachine/slim-universal-module",
     "bindings": {
-        "78f58aa7-6982-4bb6-944c-71f86003902d": {
+        "b803a95e-b1ca-407c-be2f-a25e05978225": {
             "_class": "Puli\\Discovery\\Binding\\ClassBinding",
-            "class": "TheCodingMachine\\DbalServiceProvider",
+            "class": "TheCodingMachine\\SlimServiceProvider",
             "type": "container-interop/service-provider"
         }
     },
