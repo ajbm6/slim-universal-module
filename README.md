@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/thecodingmachine/slim-universal-provider.svg?branch=master)](https://travis-ci.org/thecodingmachine/slim-universal-provider)
+[![Coverage Status](https://coveralls.io/repos/thecodingmachine/slim-universal-provider/badge.svg?branch=master&service=github)](https://coveralls.io/github/thecodingmachine/slim-universal-provider?branch=master)
+
+
 # Slim framework universal module
 
 This package integrates the Slim framework (v3) in any [container-interop/service-provider](https://github.com/container-interop/service-provider) compatible framework/container.

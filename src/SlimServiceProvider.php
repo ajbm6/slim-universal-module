@@ -4,10 +4,13 @@ namespace TheCodingMachine;
 
 use Interop\Container\ContainerInterface;
 use Interop\Container\ServiceProvider;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\App;
+use Slim\CallableResolver;
 use Slim\Collection;
 use Slim\Http\Environment;
+use Slim\Http\Request;
 use Slim\Interfaces\Http\EnvironmentInterface;
 use Slim\Handlers\PhpError;
 use Slim\Handlers\Error;
@@ -17,6 +20,8 @@ use Slim\Handlers\Strategies\RequestResponse;
 use Slim\Http\Headers;
 use Slim\Http\Response;
 use Slim\Interfaces\RouterInterface;
+use Slim\Route;
+use Slim\Router;
 
 class SlimServiceProvider implements ServiceProvider
 {
@@ -44,7 +49,7 @@ class SlimServiceProvider implements ServiceProvider
         return new App($container);
     }
 
-    public static function getSettings(ContainerInterface $container, callable $getPrevious = null):Collection
+    public static function getSettings(ContainerInterface $container, callable $getPrevious = null)
     {
         $defaultSettings = [
             'httpVersion' => '1.1',
@@ -69,7 +74,7 @@ class SlimServiceProvider implements ServiceProvider
         return new Environment($_SERVER);
     }
 
-    public static function getRequest(ContainerInterface $container):ResponseInterface
+    public static function getRequest(ContainerInterface $container):RequestInterface
     {
         return Request::createFromEnvironment($container->get('environment'));
     }
@@ -89,10 +94,10 @@ class SlimServiceProvider implements ServiceProvider
             $routerCacheFile = $container->get('settings')['routerCacheFile'];
         }
 
-        return (new Router)->setCacheFile($routerCacheFile);
+        return (new Router())->setCacheFile($routerCacheFile);
     }
 
-    public static function getFoundHandler():RouterInterface
+    public static function getFoundHandler():RequestResponse
     {
         return new RequestResponse;
     }
@@ -112,12 +117,12 @@ class SlimServiceProvider implements ServiceProvider
         return new NotFound;
     }
 
-    public static function getNotAllowedHandler():NotFound
+    public static function getNotAllowedHandler():NotAllowed
     {
         return new NotAllowed;
     }
 
-    public static function getCallableResolver(ContainerInterface $container):NotFound
+    public static function getCallableResolver(ContainerInterface $container):CallableResolver
     {
         return new CallableResolver($container);
     }
